@@ -1,5 +1,5 @@
-
 import React from 'react';
+import { BadgeIndianRupee, User, Users, Globe } from 'lucide-react';
 
 const testimonials = [
   {
@@ -7,18 +7,55 @@ const testimonials = [
     role: "IT Asset Manager",
     company: "TechGlobal Inc.",
     image: "https://randomuser.me/api/portraits/women/45.jpg",
-    testimonial: "SoftSell made it incredibly easy to recover value from our unused enterprise licenses after a company downsizing. The valuation was fair, and the payment was processed within 24 hours. I'd highly recommend their service to any IT manager looking to optimize software costs."
+    testimonial: "SoftSell made it incredibly easy to recover value from our unused enterprise licenses after a company downsizing. The valuation was fair, and the payment was processed within 24 hours. I'd highly recommend their service to any IT manager looking to optimize software costs.",
+    country: "USA"
   },
   {
     name: "Michael Chen",
     role: "Finance Director",
     company: "Innovate Solutions",
     image: "https://randomuser.me/api/portraits/men/32.jpg",
-    testimonial: "As a finance director, I'm always looking for ways to recover costs. SoftSell provided a seamless experience from valuation to payment. Their platform helped us recoup over $50,000 from unused licenses that would have otherwise gone to waste."
+    testimonial: "As a finance director, I'm always looking for ways to recover costs. SoftSell provided a seamless experience from valuation to payment. Their platform helped us recoup over $50,000 from unused licenses that would have otherwise gone to waste.",
+    country: "Singapore"
+  },
+  {
+    name: "Rajiv Sharma",
+    role: "CTO",
+    company: "IndiaTech Solutions",
+    image: "https://randomuser.me/api/portraits/men/71.jpg",
+    testimonial: "SoftSell transformed how we manage our software assets. Their platform helped us recover significant value from our unused licenses. The process was quick, transparent, and the team was incredibly responsive throughout. Highly recommended for Indian tech companies looking to optimize their software investments.",
+    country: "India"
+  },
+  {
+    name: "Priya Patel",
+    role: "IT Procurement Manager",
+    company: "Bangalore Systems",
+    image: "https://randomuser.me/api/portraits/women/65.jpg",
+    testimonial: "As an IT procurement manager for a growing tech company in Bangalore, I was skeptical about selling our unused licenses. SoftSell's valuation was 30% higher than competitors, and the entire process was completed within 48 hours. Their understanding of the Indian software market is impressive.",
+    country: "India"
+  },
+  {
+    name: "Vikram Malhotra",
+    role: "Finance Head",
+    company: "Delhi Digital Enterprises",
+    image: "https://randomuser.me/api/portraits/men/75.jpg",
+    testimonial: "SoftSell helped our organization recover over ₹45 lakhs from unused enterprise software licenses. Their team understood our compliance concerns and provided excellent documentation for our auditors. The best software license marketplace for Indian businesses!",
+    country: "India"
+  },
+  {
+    name: "Ananya Krishnan",
+    role: "Operations Director",
+    company: "Chennai Tech Innovators",
+    image: "https://randomuser.me/api/portraits/women/33.jpg",
+    testimonial: "We had hundreds of unused Microsoft licenses after restructuring our IT department. SoftSell's platform gave us the best valuation in the market and handled all the transfer paperwork. The funds were transferred to our account promptly. A game-changer for Indian enterprises managing large software portfolios!",
+    country: "India"
   }
 ];
 
 const Testimonials: React.FC = () => {
+  // Filter to keep Indian testimonials and 2 international ones
+  const displayedTestimonials = testimonials.filter(t => t.country === "India" || ["USA", "Singapore"].includes(t.country));
+  
   return (
     <section id="testimonials" className="section gradient-bg text-white">
       <div className="container-custom">
@@ -27,13 +64,18 @@ const Testimonials: React.FC = () => {
           <p className="text-xl max-w-2xl mx-auto opacity-90">
             Don't take our word for it. Here's what customers have to say about their experience with SoftSell.
           </p>
+          
+          <div className="flex justify-center items-center gap-2 mt-4">
+            <Globe className="text-amber-400" size={20} />
+            <span className="text-amber-400 font-medium">Trusted by companies worldwide, including Indian enterprises</span>
+          </div>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          {testimonials.map((testimonial, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+          {displayedTestimonials.map((testimonial, index) => (
             <div 
               key={index} 
-              className="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-colors duration-300"
+              className="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20 hover:bg-white/20 transition-colors duration-300 flex flex-col h-full"
             >
               <div className="flex items-start mb-4">
                 <div className="relative mr-4">
@@ -47,6 +89,19 @@ const Testimonials: React.FC = () => {
                 <div>
                   <h3 className="text-xl font-semibold">{testimonial.name}</h3>
                   <p className="text-white/80">{testimonial.role} at {testimonial.company}</p>
+                  <div className="flex items-center gap-1 mt-1">
+                    {testimonial.country === "India" ? (
+                      <>
+                        <BadgeIndianRupee size={16} className="text-amber-400" />
+                        <span className="text-xs text-amber-400">Indian Enterprise</span>
+                      </>
+                    ) : (
+                      <>
+                        <Globe size={16} className="text-white/60" />
+                        <span className="text-xs text-white/60">{testimonial.country}</span>
+                      </>
+                    )}
+                  </div>
                 </div>
               </div>
               
@@ -56,9 +111,9 @@ const Testimonials: React.FC = () => {
                 </svg>
               </div>
               
-              <p className="mb-6 text-white/90">{testimonial.testimonial}</p>
+              <p className="mb-6 text-white/90 flex-grow">{testimonial.testimonial}</p>
               
-              <div className="flex items-center">
+              <div className="flex items-center mt-auto">
                 <div className="flex">
                   {[...Array(5)].map((_, starIndex) => (
                     <svg key={starIndex} className="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
