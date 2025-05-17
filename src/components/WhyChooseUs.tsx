@@ -35,7 +35,7 @@ const WhyChooseUs: React.FC = () => {
   ];
 
   return (
-    <section id="why-choose-us" className="section bg-white dark:bg-gray-800">
+    <section id="why-choose-us" className="section bg-white dark:bg-gray-800 opacity-0 transform translate-y-10 transition-all duration-700 ease-in-out animate-in-view">
       <div className="container-custom">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose SoftSell</h2>
@@ -48,9 +48,10 @@ const WhyChooseUs: React.FC = () => {
           {reasons.map((reason, index) => (
             <div 
               key={index} 
-              className="bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+              className="bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl p-6 hover:shadow-lg transition-all duration-500 hover:-translate-y-2 opacity-0 transform translate-y-10"
+              style={{ animationDelay: `${index * 150}ms`, transitionDelay: `${index * 150}ms` }}
             >
-              <div className={`${reason.bgColor} ${reason.color} w-14 h-14 rounded-lg flex items-center justify-center mb-5`}>
+              <div className={`${reason.bgColor} ${reason.color} w-14 h-14 rounded-lg flex items-center justify-center mb-5 transform transition-transform duration-500 hover:rotate-12`}>
                 {reason.icon}
               </div>
               
@@ -61,8 +62,8 @@ const WhyChooseUs: React.FC = () => {
         </div>
         
         <div className="mt-16 text-center">
-          <div className="inline-flex flex-col sm:flex-row items-center justify-center gap-3 p-4 bg-gray-100 dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700">
-            <span className="flex items-center px-4 py-2 bg-softsell-600 text-white rounded-full text-sm font-medium">
+          <div className="inline-flex flex-col sm:flex-row items-center justify-center gap-3 p-4 bg-gray-100 dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+            <span className="flex items-center px-4 py-2 bg-softsell-600 text-white rounded-full text-sm font-medium animate-pulse">
               $10M+
             </span>
             <span className="text-gray-700 dark:text-gray-300 text-lg">

@@ -25,7 +25,7 @@ const HowItWorks: React.FC = () => {
   ];
 
   return (
-    <section id="how-it-works" className="section bg-gray-50 dark:bg-gray-900">
+    <section id="how-it-works" className="section bg-gray-50 dark:bg-gray-900 opacity-0 transform translate-y-10 transition-all duration-700 ease-in-out animate-in-view">
       <div className="container-custom">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">How It Works</h2>
@@ -39,7 +39,8 @@ const HowItWorks: React.FC = () => {
           {steps.map((step, index) => (
             <div 
               key={index} 
-              className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 relative border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+              className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 relative border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-500 hover:-translate-y-2 opacity-0 transform translate-y-10"
+              style={{ animationDelay: `${index * 200}ms`, transitionDelay: `${index * 200}ms` }}
             >
               {index < steps.length - 1 && (
                 <div className="hidden md:block absolute top-1/2 -right-5 transform -translate-y-1/2 z-10">
@@ -56,7 +57,7 @@ const HowItWorks: React.FC = () => {
                 </div>
               )}
               
-              <div className={`${step.iconBg} w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto`}>
+              <div className={`${step.iconBg} w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto transform transition-transform duration-500 hover:scale-110`}>
                 {step.icon}
               </div>
               
