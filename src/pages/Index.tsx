@@ -1,12 +1,48 @@
-// Update this page (the content is just a fallback if you fail to update the page)
 
-const Index = () => {
+import React, { useState, useEffect } from 'react';
+import Header from '@/components/Header';
+import HeroSection from '@/components/HeroSection';
+import HowItWorks from '@/components/HowItWorks';
+import WhyChooseUs from '@/components/WhyChooseUs';
+import Testimonials from '@/components/Testimonials';
+import ContactForm from '@/components/ContactForm';
+import Footer from '@/components/Footer';
+import ChatWidget from '@/components/ChatWidget';
+
+const Index: React.FC = () => {
+  const [darkMode, setDarkMode] = useState(false);
+  
+  // Check for user's preferred color scheme
+  useEffect(() => {
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    setDarkMode(prefersDark);
+  }, []);
+  
+  // Apply dark mode class to document
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [darkMode]);
+  
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen">
+      <Header toggleDarkMode={toggleDarkMode} darkMode={darkMode} />
+      <main>
+        <HeroSection />
+        <HowItWorks />
+        <WhyChooseUs />
+        <Testimonials />
+        <ContactForm />
+      </main>
+      <Footer />
+      <ChatWidget />
     </div>
   );
 };
