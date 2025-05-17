@@ -26,6 +26,7 @@ const Header = ({ toggleDarkMode, darkMode }: HeaderProps) => {
           <a href="#how-it-works" className="text-gray-600 hover:text-softsell-600 dark:text-gray-300 dark:hover:text-softsell-400">How It Works</a>
           <a href="#why-choose-us" className="text-gray-600 hover:text-softsell-600 dark:text-gray-300 dark:hover:text-softsell-400">Why Choose Us</a>
           <a href="#testimonials" className="text-gray-600 hover:text-softsell-600 dark:text-gray-300 dark:hover:text-softsell-400">Testimonials</a>
+          <a href="#faq" className="text-gray-600 hover:text-softsell-600 dark:text-gray-300 dark:hover:text-softsell-400">FAQ</a>
           <a href="#contact" className="cta-button">Get Started</a>
           <Button 
             variant="outline" 
@@ -87,6 +88,13 @@ const Header = ({ toggleDarkMode, darkMode }: HeaderProps) => {
               className="block py-2 text-gray-600 dark:text-gray-300"
             >
               Testimonials
+            </a>
+            <a 
+              href="#faq" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="block py-2 text-gray-600 dark:text-gray-300"
+            >
+              FAQ
             </a>
             <a 
               href="#contact" 

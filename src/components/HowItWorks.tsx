@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Upload, DollarSign, Check } from 'lucide-react';
 
 const HowItWorks: React.FC = () => {
@@ -23,13 +23,37 @@ const HowItWorks: React.FC = () => {
       iconBg: "bg-green-500"
     }
   ];
+  
+  useEffect(() => {
+    const cards = document.querySelectorAll('.how-it-works-card');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, idx) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('animate-in-view');
+          }, idx * 200);
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    cards.forEach(card => {
+      observer.observe(card);
+    });
+    
+    return () => {
+      cards.forEach(card => {
+        observer.unobserve(card);
+      });
+    };
+  }, []);
 
   return (
     <section id="how-it-works" className="section bg-gray-50 dark:bg-gray-900 opacity-0 transform translate-y-10 transition-all duration-700 ease-in-out animate-in-view">
       <div className="container-custom">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">How It Works</h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 animate-fade-in-down">How It Works</h2>
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto animate-fade-in-down" style={{ animationDelay: '200ms' }}>
             Selling your software licenses has never been easier. 
             Complete the process in three simple steps.
           </p>
@@ -39,19 +63,18 @@ const HowItWorks: React.FC = () => {
           {steps.map((step, index) => (
             <div 
               key={index} 
-              className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 relative border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-500 hover:-translate-y-2 opacity-0 transform translate-y-10"
+              className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 relative border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-500 hover:-translate-y-2 opacity-0 transform translate-y-10 how-it-works-card"
               style={{ animationDelay: `${index * 200}ms`, transitionDelay: `${index * 200}ms` }}
             >
               {index < steps.length - 1 && (
                 <div className="hidden md:block absolute top-1/2 -right-5 transform -translate-y-1/2 z-10">
-                  <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-gray-300 dark:text-gray-600 animate-pulse">
                     <path 
                       d="M20 5L35 20L20 35" 
                       stroke="currentColor" 
                       strokeWidth="2" 
                       strokeLinecap="round" 
                       strokeLinejoin="round" 
-                      className="text-gray-300 dark:text-gray-600" 
                     />
                   </svg>
                 </div>
@@ -71,6 +94,15 @@ const HowItWorks: React.FC = () => {
               </div>
             </div>
           ))}
+        </div>
+        
+        <div className="mt-16 text-center opacity-0 transform translate-y-10 animate-in-view" style={{ animationDelay: '800ms' }}>
+          <a href="#contact" className="inline-flex items-center px-6 py-3 bg-softsell-600 hover:bg-softsell-700 text-white rounded-lg transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg">
+            Start Selling Your Licenses
+            <svg className="ml-2 w-5 h-5 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+          </a>
         </div>
       </div>
     </section>

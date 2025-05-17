@@ -5,9 +5,11 @@ import HeroSection from '@/components/HeroSection';
 import HowItWorks from '@/components/HowItWorks';
 import WhyChooseUs from '@/components/WhyChooseUs';
 import Testimonials from '@/components/Testimonials';
+import FAQ from '@/components/FAQ';
 import ContactForm from '@/components/ContactForm';
 import Footer from '@/components/Footer';
 import ChatWidget from '@/components/ChatWidget';
+import TrustedPartners from '@/components/TrustedPartners';
 
 const Index: React.FC = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -59,9 +61,11 @@ const Index: React.FC = () => {
       <Header toggleDarkMode={toggleDarkMode} darkMode={darkMode} />
       <main>
         <HeroSection />
+        <TrustedPartners />
         <HowItWorks />
         <WhyChooseUs />
         <Testimonials />
+        <FAQ />
         <ContactForm />
       </main>
       <Footer />
